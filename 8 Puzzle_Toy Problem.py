@@ -4,7 +4,8 @@ class Node:
         self.data = data
         self.level = level
         self.fval = fval
-def generate_child(self):
+
+    def generate_child(self):
         """ Generate child nodes from the given node by moving the blank space
             either in the four directions {up,down,left,right} """
         x,y = self.find(self.data,'_')
@@ -31,7 +32,9 @@ def generate_child(self):
             return temp_puz
         else:
             return None
-def copy(self,root):
+            
+
+    def copy(self,root):
         """ Copy function to create a similar matrix of the given node"""
         temp = []
         for i in root:
@@ -47,23 +50,28 @@ def copy(self,root):
             for j in range(0,len(self.data)):
                 if puz[i][j] == x:
                     return i,j
+
+
 class Puzzle:
     def __init__(self,size):
         """ Initialize the puzzle size by the specified size,open and closed lists to empty """
         self.n = size
         self.open = []
         self.closed = []
-def accept(self):
+
+    def accept(self):
         """ Accepts the puzzle from the user """
         puz = []
         for i in range(0,self.n):
             temp = input().split(" ")
             puz.append(temp)
         return puz
-def f(self,start,goal):
+
+    def f(self,start,goal):
         """ Heuristic Function to calculate hueristic value f(x) = h(x) + g(x) """
         return self.h(start.data,goal)+start.level
-def h(self,start,goal):
+
+    def h(self,start,goal):
         """ Calculates the different between the given puzzles """
         temp = 0
         for i in range(0,self.n):
@@ -71,13 +79,16 @@ def h(self,start,goal):
                 if start[i][j] != goal[i][j] and start[i][j] != '_':
                     temp += 1
         return temp
-def process(self):
+        
+
+    def process(self):
         """ Accept Start and Goal Puzzle state"""
         print("Enter the start state matrix \n")
         start = self.accept()
         print("Enter the goal state matrix \n")        
         goal = self.accept()
-start = Node(start,0,0)
+
+        start = Node(start,0,0)
         start.fval = self.f(start,goal)
         """ Put the start node in the open list"""
         self.open.append(start)
@@ -100,7 +111,10 @@ start = Node(start,0,0)
                 self.open.append(i)
             self.closed.append(cur)
             del self.open[0]
-""" sort the opne list based on f value """
+
+            """ sort the opne list based on f value """
             self.open.sort(key = lambda x:x.fval,reverse=False)
+
+
 puz = Puzzle(3)
 puz.process()
